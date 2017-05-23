@@ -60,7 +60,7 @@ public class UserController {
             user.setPasswd(passwd);
         }
         user.setPort(port);
-        user.setTransferEnable((long) Utils.toGB(transfer_enable));
+        user.setTransferEnable(Utils.toGB(transfer_enable));
         user.setInviteNum(invite_num);
         user.setEnable(enable.byteValue());
         user.setMethod(method);

@@ -213,8 +213,8 @@ public class Utils {
         return new String(decValue);
     }
 
-    public static int toGB(Double traffic) {
-        return (int) (1048576 * 1024 * traffic);
+    public static long toGB(Double traffic) {
+        return (long) (1048576 * 1024 * traffic);
     }
 
     public static int toMB(int traffic) {

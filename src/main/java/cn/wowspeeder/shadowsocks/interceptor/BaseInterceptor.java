@@ -59,14 +59,14 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
             return false;
         }
 
-        if (loginUser != null && uri.startsWith("/admin") && loginUser.getIsAdmin() == 0) {
-            try {
-                response.sendRedirect(request.getContextPath() + "/auth/login");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return false;
-        }
+//        if (loginUser != null && uri.startsWith("/admin") && loginUser.getIsAdmin() == 0) {
+//            try {
+//                response.sendRedirect(request.getContextPath() + "/auth/login");
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            return false;
+//        }
         return true;
     }
 
