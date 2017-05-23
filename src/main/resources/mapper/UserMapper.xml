@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wowspeeder.shadowsocks.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="cn.wowspeeder.shadowsocks.model.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="pass" property="pass" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="t" property="t" jdbcType="INTEGER" />
+    <result column="u" property="u" jdbcType="BIGINT" />
+    <result column="d" property="d" jdbcType="BIGINT" />
+    <result column="transfer_enable" property="transferEnable" jdbcType="BIGINT" />
+    <result column="port" property="port" jdbcType="INTEGER" />
+    <result column="protocol" property="protocol" jdbcType="VARCHAR" />
+    <result column="obfs" property="obfs" jdbcType="VARCHAR" />
+    <result column="switched" property="switched" jdbcType="TINYINT" />
+    <result column="enable" property="enable" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="last_get_gift_time" property="lastGetGiftTime" jdbcType="INTEGER" />
+    <result column="last_check_in_time" property="lastCheckInTime" jdbcType="INTEGER" />
+    <result column="last_rest_pass_time" property="lastRestPassTime" jdbcType="INTEGER" />
+    <result column="reg_date" property="regDate" jdbcType="INTEGER" />
+    <result column="invite_num" property="inviteNum" jdbcType="INTEGER" />
+    <result column="is_admin" property="isAdmin" jdbcType="INTEGER" />
+    <result column="ref_by" property="refBy" jdbcType="INTEGER" />
+    <result column="expire_time" property="expireTime" jdbcType="INTEGER" />
+    <result column="method" property="method" jdbcType="VARCHAR" />
+    <result column="is_email_verify" property="isEmailVerify" jdbcType="TINYINT" />
+    <result column="reg_ip" property="regIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_name, email, pass, passwd, t, u, d, transfer_enable, port, protocol, obfs, 
+    switched, enable, type, last_get_gift_time, last_check_in_time, last_rest_pass_time, 
+    reg_date, invite_num, is_admin, ref_by, expire_time, method, is_email_verify, reg_ip
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.wowspeeder.shadowsocks.model.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sp_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sp_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getLastPort" resultType="java.lang.Integer">
+    select max(port) from sp_user
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sp_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.wowspeeder.shadowsocks.model.UserExample" >
+    delete from sp_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.wowspeeder.shadowsocks.model.User" >
+    insert into sp_user (id, user_name, email, 
+      pass, passwd, t, u, 
+      d, transfer_enable, port, 
+      protocol, obfs, switched, 
+      enable, type, last_get_gift_time, 
+      last_check_in_time, last_rest_pass_time, reg_date, 
+      invite_num, is_admin, ref_by, 
+      expire_time, method, is_email_verify, 
+      reg_ip)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{pass,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR}, #{t,jdbcType=INTEGER}, #{u,jdbcType=BIGINT}, 
+      #{d,jdbcType=BIGINT}, #{transferEnable,jdbcType=BIGINT}, #{port,jdbcType=INTEGER}, 
+      #{protocol,jdbcType=VARCHAR}, #{obfs,jdbcType=VARCHAR}, #{switched,jdbcType=TINYINT}, 
+      #{enable,jdbcType=TINYINT}, #{type,jdbcType=TINYINT}, #{lastGetGiftTime,jdbcType=INTEGER}, 
+      #{lastCheckInTime,jdbcType=INTEGER}, #{lastRestPassTime,jdbcType=INTEGER}, #{regDate,jdbcType=INTEGER}, 
+      #{inviteNum,jdbcType=INTEGER}, #{isAdmin,jdbcType=INTEGER}, #{refBy,jdbcType=INTEGER}, 
+      #{expireTime,jdbcType=INTEGER}, #{method,jdbcType=VARCHAR}, #{isEmailVerify,jdbcType=TINYINT}, 
+      #{regIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wowspeeder.shadowsocks.model.User" >
+    insert into sp_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="pass != null" >
+        pass,
+      </if>
+      <if test="passwd != null" >
+        passwd,
+      </if>
+      <if test="t != null" >
+        t,
+      </if>
+      <if test="u != null" >
+        u,
+      </if>
+      <if test="d != null" >
+        d,
+      </if>
+      <if test="transferEnable != null" >
+        transfer_enable,
+      </if>
+      <if test="port != null" >
+        port,
+      </if>
+      <if test="protocol != null" >
+        protocol,
+      </if>
+      <if test="obfs != null" >
+        obfs,
+      </if>
+      <if test="switched != null" >
+        switched,
+      </if>
+      <if test="enable != null" >
+        enable,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="lastGetGiftTime != null" >
+        last_get_gift_time,
+      </if>
+      <if test="lastCheckInTime != null" >
+        last_check_in_time,
+      </if>
+      <if test="lastRestPassTime != null" >
+        last_rest_pass_time,
+      </if>
+      <if test="regDate != null" >
+        reg_date,
+      </if>
+      <if test="inviteNum != null" >
+        invite_num,
+      </if>
+      <if test="isAdmin != null" >
+        is_admin,
+      </if>
+      <if test="refBy != null" >
+        ref_by,
+      </if>
+      <if test="expireTime != null" >
+        expire_time,
+      </if>
+      <if test="method != null" >
+        method,
+      </if>
+      <if test="isEmailVerify != null" >
+        is_email_verify,
+      </if>
+      <if test="regIp != null" >
+        reg_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null" >
+        #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="t != null" >
+        #{t,jdbcType=INTEGER},
+      </if>
+      <if test="u != null" >
+        #{u,jdbcType=BIGINT},
+      </if>
+      <if test="d != null" >
+        #{d,jdbcType=BIGINT},
+      </if>
+      <if test="transferEnable != null" >
+        #{transferEnable,jdbcType=BIGINT},
+      </if>
+      <if test="port != null" >
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="protocol != null" >
+        #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="obfs != null" >
+        #{obfs,jdbcType=VARCHAR},
+      </if>
+      <if test="switched != null" >
+        #{switched,jdbcType=TINYINT},
+      </if>
+      <if test="enable != null" >
+        #{enable,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="lastGetGiftTime != null" >
+        #{lastGetGiftTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastCheckInTime != null" >
+        #{lastCheckInTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastRestPassTime != null" >
+        #{lastRestPassTime,jdbcType=INTEGER},
+      </if>
+      <if test="regDate != null" >
+        #{regDate,jdbcType=INTEGER},
+      </if>
+      <if test="inviteNum != null" >
+        #{inviteNum,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null" >
+        #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="refBy != null" >
+        #{refBy,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        #{expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerify != null" >
+        #{isEmailVerify,jdbcType=TINYINT},
+      </if>
+      <if test="regIp != null" >
+        #{regIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.wowspeeder.shadowsocks.model.UserExample" resultType="java.lang.Integer" >
+    select count(*) from sp_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sp_user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pass != null" >
+        pass = #{record.pass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.passwd != null" >
+        passwd = #{record.passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.t != null" >
+        t = #{record.t,jdbcType=INTEGER},
+      </if>
+      <if test="record.u != null" >
+        u = #{record.u,jdbcType=BIGINT},
+      </if>
+      <if test="record.d != null" >
+        d = #{record.d,jdbcType=BIGINT},
+      </if>
+      <if test="record.transferEnable != null" >
+        transfer_enable = #{record.transferEnable,jdbcType=BIGINT},
+      </if>
+      <if test="record.port != null" >
+        port = #{record.port,jdbcType=INTEGER},
+      </if>
+      <if test="record.protocol != null" >
+        protocol = #{record.protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="record.obfs != null" >
+        obfs = #{record.obfs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.switched != null" >
+        switched = #{record.switched,jdbcType=TINYINT},
+      </if>
+      <if test="record.enable != null" >
+        enable = #{record.enable,jdbcType=TINYINT},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.lastGetGiftTime != null" >
+        last_get_gift_time = #{record.lastGetGiftTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastCheckInTime != null" >
+        last_check_in_time = #{record.lastCheckInTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastRestPassTime != null" >
+        last_rest_pass_time = #{record.lastRestPassTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.regDate != null" >
+        reg_date = #{record.regDate,jdbcType=INTEGER},
+      </if>
+      <if test="record.inviteNum != null" >
+        invite_num = #{record.inviteNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.isAdmin != null" >
+        is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="record.refBy != null" >
+        ref_by = #{record.refBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.expireTime != null" >
+        expire_time = #{record.expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.method != null" >
+        method = #{record.method,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isEmailVerify != null" >
+        is_email_verify = #{record.isEmailVerify,jdbcType=TINYINT},
+      </if>
+      <if test="record.regIp != null" >
+        reg_ip = #{record.regIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sp_user
+    set id = #{record.id,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      pass = #{record.pass,jdbcType=VARCHAR},
+      passwd = #{record.passwd,jdbcType=VARCHAR},
+      t = #{record.t,jdbcType=INTEGER},
+      u = #{record.u,jdbcType=BIGINT},
+      d = #{record.d,jdbcType=BIGINT},
+      transfer_enable = #{record.transferEnable,jdbcType=BIGINT},
+      port = #{record.port,jdbcType=INTEGER},
+      protocol = #{record.protocol,jdbcType=VARCHAR},
+      obfs = #{record.obfs,jdbcType=VARCHAR},
+      switched = #{record.switched,jdbcType=TINYINT},
+      enable = #{record.enable,jdbcType=TINYINT},
+      type = #{record.type,jdbcType=TINYINT},
+      last_get_gift_time = #{record.lastGetGiftTime,jdbcType=INTEGER},
+      last_check_in_time = #{record.lastCheckInTime,jdbcType=INTEGER},
+      last_rest_pass_time = #{record.lastRestPassTime,jdbcType=INTEGER},
+      reg_date = #{record.regDate,jdbcType=INTEGER},
+      invite_num = #{record.inviteNum,jdbcType=INTEGER},
+      is_admin = #{record.isAdmin,jdbcType=INTEGER},
+      ref_by = #{record.refBy,jdbcType=INTEGER},
+      expire_time = #{record.expireTime,jdbcType=INTEGER},
+      method = #{record.method,jdbcType=VARCHAR},
+      is_email_verify = #{record.isEmailVerify,jdbcType=TINYINT},
+      reg_ip = #{record.regIp,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wowspeeder.shadowsocks.model.User" >
+    update sp_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="pass != null" >
+        pass = #{pass,jdbcType=VARCHAR},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="t != null" >
+        t = #{t,jdbcType=INTEGER},
+      </if>
+      <if test="u != null" >
+        u = #{u,jdbcType=BIGINT},
+      </if>
+      <if test="d != null" >
+        d = #{d,jdbcType=BIGINT},
+      </if>
+      <if test="transferEnable != null" >
+        transfer_enable = #{transferEnable,jdbcType=BIGINT},
+      </if>
+      <if test="port != null" >
+        port = #{port,jdbcType=INTEGER},
+      </if>
+      <if test="protocol != null" >
+        protocol = #{protocol,jdbcType=VARCHAR},
+      </if>
+      <if test="obfs != null" >
+        obfs = #{obfs,jdbcType=VARCHAR},
+      </if>
+      <if test="switched != null" >
+        switched = #{switched,jdbcType=TINYINT},
+      </if>
+      <if test="enable != null" >
+        enable = #{enable,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="lastGetGiftTime != null" >
+        last_get_gift_time = #{lastGetGiftTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastCheckInTime != null" >
+        last_check_in_time = #{lastCheckInTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastRestPassTime != null" >
+        last_rest_pass_time = #{lastRestPassTime,jdbcType=INTEGER},
+      </if>
+      <if test="regDate != null" >
+        reg_date = #{regDate,jdbcType=INTEGER},
+      </if>
+      <if test="inviteNum != null" >
+        invite_num = #{inviteNum,jdbcType=INTEGER},
+      </if>
+      <if test="isAdmin != null" >
+        is_admin = #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="refBy != null" >
+        ref_by = #{refBy,jdbcType=INTEGER},
+      </if>
+      <if test="expireTime != null" >
+        expire_time = #{expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="method != null" >
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="isEmailVerify != null" >
+        is_email_verify = #{isEmailVerify,jdbcType=TINYINT},
+      </if>
+      <if test="regIp != null" >
+        reg_ip = #{regIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wowspeeder.shadowsocks.model.User" >
+    update sp_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      pass = #{pass,jdbcType=VARCHAR},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      t = #{t,jdbcType=INTEGER},
+      u = #{u,jdbcType=BIGINT},
+      d = #{d,jdbcType=BIGINT},
+      transfer_enable = #{transferEnable,jdbcType=BIGINT},
+      port = #{port,jdbcType=INTEGER},
+      protocol = #{protocol,jdbcType=VARCHAR},
+      obfs = #{obfs,jdbcType=VARCHAR},
+      switched = #{switched,jdbcType=TINYINT},
+      enable = #{enable,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      last_get_gift_time = #{lastGetGiftTime,jdbcType=INTEGER},
+      last_check_in_time = #{lastCheckInTime,jdbcType=INTEGER},
+      last_rest_pass_time = #{lastRestPassTime,jdbcType=INTEGER},
+      reg_date = #{regDate,jdbcType=INTEGER},
+      invite_num = #{inviteNum,jdbcType=INTEGER},
+      is_admin = #{isAdmin,jdbcType=INTEGER},
+      ref_by = #{refBy,jdbcType=INTEGER},
+      expire_time = #{expireTime,jdbcType=INTEGER},
+      method = #{method,jdbcType=VARCHAR},
+      is_email_verify = #{isEmailVerify,jdbcType=TINYINT},
+      reg_ip = #{regIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="cn.wowspeeder.shadowsocks.model.UserExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sp_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
