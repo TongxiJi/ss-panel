@@ -42,9 +42,9 @@ public class UserController {
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     @ResponseBody
     public Result update(@PathVariable Integer id,
-                         @RequestBody String user_name, @RequestParam String email,
+                         @RequestParam String user_name, @RequestParam String email,
                          @RequestParam String pass, @RequestParam String passwd,
-                         @RequestParam Integer port, @RequestParam Integer transfer_enable,
+                         @RequestParam Integer port, @RequestParam Double transfer_enable,
                          @RequestParam Integer invite_num, @RequestParam String method,
                          @RequestParam Integer enable, @RequestParam Integer is_admin,
                          @RequestParam Integer ref_by) {

@@ -1,7 +1,5 @@
 package cn.wowspeeder.shadowsocks.utils;
 
-import org.springframework.http.HttpRequest;
-import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.util.StringUtils;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
@@ -215,8 +213,8 @@ public class Utils {
         return new String(decValue);
     }
 
-    public static int toGB(int traffic) {
-        return 1048576 * 1024 * traffic;
+    public static int toGB(Double traffic) {
+        return (int) (1048576 * 1024 * traffic);
     }
 
     public static int toMB(int traffic) {

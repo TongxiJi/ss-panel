@@ -166,7 +166,8 @@ public class AuthController {
         temp.setT(0);
         temp.setU(0L);
         temp.setD(0L);
-        temp.setTransferEnable((long) Utils.toGB(Integer.valueOf(Functions.config("app.defaultTraffic"))));
+        // TODO: 2017/5/23  更新不了需要修复
+        temp.setTransferEnable((long) Utils.toGB(Double.valueOf(Functions.config("app.defaultTraffic"))));
         temp.setInviteNum(Integer.valueOf(Functions.config("app.inviteNum")));
         temp.setRegIp(ip);
         temp.setRefBy(c.getUserId());
