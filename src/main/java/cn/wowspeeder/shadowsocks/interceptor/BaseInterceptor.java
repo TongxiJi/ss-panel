@@ -48,19 +48,24 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
                     }
                 });
             }
-        } else {
-            LOG.debug("用户已登录:{}",loginUser.getUserName());
         }
 
-        if (uri.startsWith("/user") || uri.startsWith("/admin")) {
-            if (null == loginUser) {
-                try {
-                    response.sendRedirect(request.getContextPath() + "/auth/login");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return false;
+        if ((uri.startsWith("/user") || uri.startsWith("/admin")) && (null == loginUser)) {
+            try {
+                response.sendRedirect(request.getContextPath() + "/auth/login");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            return false;
+        }
+
+        if (loginUser != null && uri.startsWith("/admin") && loginUser.getIsAdmin() == 0) {
+            try {
+                response.sendRedirect(request.getContextPath() + "/auth/login");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return false;
         }
         return true;
     }
