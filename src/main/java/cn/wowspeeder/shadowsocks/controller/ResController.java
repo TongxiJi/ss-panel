@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Random;
 
 @Controller
-@RequestMapping("res")
+@RequestMapping("/res")
 public class ResController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ResController.class);
