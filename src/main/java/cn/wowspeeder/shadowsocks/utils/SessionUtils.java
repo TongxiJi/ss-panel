@@ -43,12 +43,12 @@ public final class SessionUtils {
     }
 
     public static LoginUser getLoginUser(HttpServletRequest request) {
-        if (request.getSession(false) == null)  return null;
+        if (request.getSession(false) == null) return null;
         Object loginSession = request.getSession(false).getAttribute(SpConst.LOGIN_SESSION_KEY);
         if (loginSession != null) {
-            return (LoginUser)loginSession;
+            return (LoginUser) loginSession;
         }
-        return  null;
+        return null;
     }
 
 
@@ -72,15 +72,16 @@ public final class SessionUtils {
 
 
     public static String getCookie(HttpServletRequest request, String cookieName) {
-        if(null != request && !StringUtils.isEmpty(cookieName)){
+        if (request.getCookies() == null) return null;
+        if (null != request && !StringUtils.isEmpty(cookieName)) {
             String val = null;
             for (Cookie cookie : request.getCookies()) {
-                if  (cookie.getName().equals(cookieName)) {
+                if (cookie.getName().equals(cookieName)) {
                     val = cookie.getValue();
                     break;
                 }
             }
-            if(!StringUtils.isEmpty(val)){
+            if (!StringUtils.isEmpty(val)) {
                 try {
                     return Utils.decrypt(val, SpConst.AES_SALT);
                 } catch (Exception e) {
