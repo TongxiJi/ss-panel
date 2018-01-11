@@ -1,5 +1,6 @@
 package cn.wowspeeder.shadowsocks.model;
 
+import cn.wowspeeder.shadowsocks.Application;
 import cn.wowspeeder.shadowsocks.ext.Functions;
 import cn.wowspeeder.shadowsocks.utils.DateKit;
 
@@ -304,7 +305,7 @@ public class User {
     }
 
     public boolean isAbleToCheckin(){
-        Integer ct = Integer.valueOf(Functions.config("app.checkinTime")) * 60 * 60;
+        Integer ct = Integer.valueOf(Application.getEnvValue("app.checkinTime")) * 60 * 60;
         if(this.getLastCheckInTime() + ct < DateKit.getCurrentUnixTime()){
             return true;
         }

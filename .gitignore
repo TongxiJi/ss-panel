@@ -4,4 +4,5 @@ target/
 bin/
 .settings/
 .idea/
+jdbc.properties
 *.iml

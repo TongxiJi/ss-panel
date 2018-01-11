@@ -1,7 +1,7 @@
 package cn.wowspeeder.shadowsocks.service.impl;
 
 
-import cn.wowspeeder.shadowsocks.common.SpConst;
+import cn.wowspeeder.shadowsocks.Application;
 import cn.wowspeeder.shadowsocks.dao.PasswordResetMapper;
 import cn.wowspeeder.shadowsocks.ext.Envelope;
 import cn.wowspeeder.shadowsocks.ext.Functions;
@@ -41,7 +41,7 @@ public class PasswordResetServiceImpl implements PasswordResetService {
 
         String subject = Functions.config("app.appName") + " 重置密码";
 
-        String resetUrl = SpConst.SITE_URL + "/password/token?c=" + token;
+        String resetUrl = Application.getEnvValue("app.baseUrl") + "/password/token?c=" + token;
         Map<String, Object> cry = new HashMap<>();
         cry.put("resetUrl", resetUrl);
         cry.put("appName", Functions.config("app.appName"));

@@ -54,21 +54,21 @@ public final class SessionUtils {
 
     private static final int one_month = 30 * 24 * 60 * 60;
 
-    public static void setLoginCookie(HttpServletResponse response, Integer uid, int time) {
-        if (null != response && null != uid) {
-            try {
-                String val = Utils.encrypt(uid.toString(), SpConst.AES_SALT);
-                boolean isSSL = SpConst.SITE_URL.startsWith("https");
-                Cookie cookie = new Cookie(SpConst.USER_IN_COOKIE, val);
-                cookie.setMaxAge(time);
-                cookie.setSecure(isSSL);
-                cookie.setPath("/");
-                response.addCookie(cookie);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    public static void setLoginCookie(HttpServletResponse response, Integer uid, int time) {
+//        if (null != response && null != uid) {
+//            try {
+//                String val = Utils.encrypt(uid.toString(), SpConst.AES_SALT);
+//                boolean isSSL = SpConst.SITE_URL.startsWith("https");
+//                Cookie cookie = new Cookie(SpConst.USER_IN_COOKIE, val);
+//                cookie.setMaxAge(time);
+//                cookie.setSecure(isSSL);
+//                cookie.setPath("/");
+//                response.addCookie(cookie);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
 
     public static String getCookie(HttpServletRequest request, String cookieName) {

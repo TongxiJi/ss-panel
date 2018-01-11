@@ -1,4 +1,4 @@
 # ss-panel 
-java version
+java spring-boot version
 
-spring-mvc + jetbrick-template + mybatis
+spring-boot + jetbrick-template + mybatis

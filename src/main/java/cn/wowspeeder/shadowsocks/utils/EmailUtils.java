@@ -1,5 +1,6 @@
 package cn.wowspeeder.shadowsocks.utils;
 
+import cn.wowspeeder.shadowsocks.Application;
 import cn.wowspeeder.shadowsocks.common.SpConst;
 import cn.wowspeeder.shadowsocks.exception.TipException;
 import cn.wowspeeder.shadowsocks.ext.Envelope;
@@ -27,7 +28,7 @@ public final class EmailUtils {
         JetTemplate template = engine.getTemplate(tpl);
         StringWriter writer = new StringWriter();
         Map<String, Object> context = new HashMap<>();
-        context.put("config", SpConst.APP_PROPERTIES);
+        context.put("config", Application.getContext().getEnvironment());
         context.put("analyticsCode", "");
         if (null != ary && ary.size() > 0) {
             context.putAll(ary);
@@ -41,11 +42,11 @@ public final class EmailUtils {
             try {
                 // Create the email message
                 HtmlEmail email = new HtmlEmail();
-                email.setHostName(SpConst.MAIL_HOST);
+                email.setHostName(Application.getEnvValue("mail.smtp.host"));
                 email.addTo(envelope.getTo());
                 //email.setStartTLSEnabled(true);
-                email.setFrom(SpConst.MAIL_USER, SpConst.MAIL_USERNAME);
-                email.setAuthentication(SpConst.MAIL_USER, SpConst.MAIL_PASS);
+                email.setFrom(Application.getEnvValue("mail.user"), Application.getEnvValue("mail.from"));
+                email.setAuthentication(Application.getEnvValue("mail.user"), Application.getEnvValue("mail.pass"));
                 email.setCharset("UTF-8");
 
                 email.setSubject(envelope.getSubject());

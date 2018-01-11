@@ -1,5 +1,6 @@
 package cn.wowspeeder.shadowsocks.service.impl;
 
+import cn.wowspeeder.shadowsocks.Application;
 import cn.wowspeeder.shadowsocks.common.SpConst;
 import cn.wowspeeder.shadowsocks.dao.EmailVerifyMapper;
 import cn.wowspeeder.shadowsocks.ext.Envelope;
@@ -45,7 +46,7 @@ public class EmailVerifyServiceImpl implements EmailVerifyService {
 
     @Override
     public void sendVerification(String email) {
-        int ttl = Integer.parseInt(SpConst.APP_PROPERTIES.getProperty("emailVerifyTTL"));
+        int ttl = Integer.parseInt(Application.getEnvValue("app.emailVerifyTTL"));
         EmailVerifyExample emailVerifyExample = new EmailVerifyExample();
         emailVerifyExample.createCriteria()
                 .andEmailEqualTo(email);
@@ -68,7 +69,7 @@ public class EmailVerifyServiceImpl implements EmailVerifyService {
             emailVerifyMapper.updateByPrimaryKeySelective(emailVerify);
         }
 
-        String appName = SpConst.APP_PROPERTIES.getProperty("appName");
+        String appName = Application.getEnvValue("app.appName");
         String subject = appName + " 邮箱验证";
         Map<String, Object> ary = new HashMap<>();
         ary.put("token", token);

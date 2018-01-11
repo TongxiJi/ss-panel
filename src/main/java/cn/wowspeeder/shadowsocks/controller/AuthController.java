@@ -1,5 +1,6 @@
 package cn.wowspeeder.shadowsocks.controller;
 
+import cn.wowspeeder.shadowsocks.Application;
 import cn.wowspeeder.shadowsocks.common.SpConst;
 import cn.wowspeeder.shadowsocks.dto.LoginUser;
 import cn.wowspeeder.shadowsocks.ext.Functions;
@@ -16,7 +17,6 @@ import cn.wowspeeder.shadowsocks.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.DigestUtils;
@@ -77,7 +77,7 @@ public class AuthController {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     @ResponseBody
     public Result doLogin(@RequestParam String email, @RequestParam String passwd,
-                          @RequestParam String remember_me,HttpSession session, ModelMap modelMap) {
+                          @RequestParam String remember_me, HttpSession session, ModelMap modelMap) {
         email = email.toLowerCase();
         User user = userService.byEmail(email);
 
@@ -146,7 +146,7 @@ public class AuthController {
             return Result.fail(EmailUsed, "邮箱已经被注册了");
         }
 
-        if ((Boolean) SpConst.APP_PROPERTIES.get("emailVerifyEnabled") &&
+        if (Boolean.parseBoolean(Application.getEnvValue("app.emailVerifyEnabled")) &&
                 !emailVerifyService.checkVerifyCode(email, verifycode)) {
             return Result.fail("邮箱验证代码不正确");
         }

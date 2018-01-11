@@ -1,5 +1,6 @@
 package cn.wowspeeder.shadowsocks.controller;
 
+import cn.wowspeeder.shadowsocks.Application;
 import cn.wowspeeder.shadowsocks.common.SpConst;
 import cn.wowspeeder.shadowsocks.dto.LoginUser;
 import cn.wowspeeder.shadowsocks.ext.Functions;
@@ -259,7 +260,7 @@ public class UserController {
             return Result.ok("您似乎已经签到过了...");
         }
 
-        int traffic = Utils.rand(Integer.valueOf(Functions.config("app.checkinMin")), Integer.valueOf(Functions.config("app.checkinMax")));
+        int traffic = Utils.rand(Integer.valueOf(Application.getEnvValue("app.checkinMin")), Integer.valueOf(Application.getEnvValue("app.checkinMax")));
 
         int trafficToAdd = Utils.toMB(traffic);
 

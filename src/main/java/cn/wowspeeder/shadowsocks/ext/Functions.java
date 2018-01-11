@@ -1,6 +1,6 @@
 package cn.wowspeeder.shadowsocks.ext;
 
-import cn.wowspeeder.shadowsocks.common.SpConst;
+import cn.wowspeeder.shadowsocks.Application;
 import cn.wowspeeder.shadowsocks.utils.DateKit;
 import cn.wowspeeder.shadowsocks.utils.Utils;
 import jetbrick.util.codec.MD5Utils;
@@ -15,21 +15,22 @@ public class Functions {
 
     public static String config(String key) {
         if (!StringUtils.isEmpty(key)) {
-            return String.valueOf(SpConst.APP_PROPERTIES.get(key));
+            Application.getEnvValue(key);
         }
         return "";
     }
 
     /**
      * 取某个区间的随机数
+     *
      * @param max
      * @return
      */
     public static int random(int max) {
-        int min=1;
+        int min = 1;
         Random random = new Random();
-        int radom = random.nextInt(max)%(max-min+1) + min;
-        if(radom == 0){
+        int radom = random.nextInt(max) % (max - min + 1) + min;
+        if (radom == 0) {
             return 1;
         }
         return radom;
@@ -37,11 +38,12 @@ public class Functions {
 
     /**
      * 格式化日期
+     *
      * @param unixTime
      * @return
      */
     public static String fmtdate(Integer unixTime) {
-        if(null != unixTime){
+        if (null != unixTime) {
             return DateKit.formatDateByUnixTime(unixTime, "yyyy-MM-dd");
         }
         return "";
@@ -49,12 +51,13 @@ public class Functions {
 
     /**
      * 格式化日期
+     *
      * @param unixTime
      * @param patten
      * @return
      */
     public static String fmtdate(Integer unixTime, String patten) {
-        if(null != unixTime && !StringUtils.isEmpty(patten)){
+        if (null != unixTime && !StringUtils.isEmpty(patten)) {
             return DateKit.formatDateByUnixTime(unixTime, patten);
         }
         return "";
