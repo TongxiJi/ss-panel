@@ -7,7 +7,7 @@ public class NodeOnlineLog {
 
     private Integer onlineUser;
 
-    private Integer logTime;
+    private Long logTime;
 
     public Integer getId() {
         return id;
@@ -33,11 +33,11 @@ public class NodeOnlineLog {
         this.onlineUser = onlineUser;
     }
 
-    public Integer getLogTime() {
+    public Long getLogTime() {
         return logTime;
     }
 
-    public void setLogTime(Integer logTime) {
+    public void setLogTime(Long logTime) {
         this.logTime = logTime;
     }
 }

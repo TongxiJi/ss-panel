@@ -10,7 +10,7 @@
         <result column="node_info" property="nodeInfo" jdbcType="VARCHAR"/>
         <result column="rate" property="rate" jdbcType="REAL"/>
         <result column="traffic" property="traffic" jdbcType="VARCHAR"/>
-        <result column="log_time" property="logTime" jdbcType="INTEGER"/>
+        <result column="log_time" property="logTime" jdbcType="BIGINT"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>

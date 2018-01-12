@@ -45,8 +45,8 @@ public class TokenServiceImpl implements TokenService {
         UserToken t = new UserToken();
         t.setToken(token);
         t.setUserId(uid);
-        int time = DateKit.getCurrentUnixTime();
-        int exp = time + 3600 * 24 * 7;
+        long time = DateKit.getCurrentUnixTime();
+        long exp = time + 3600 * 24 * 7;
         t.setCreateTime(time);
         t.setExpireTime(exp);
         userTokenMapper.insert(t);

@@ -56,7 +56,7 @@ public class EmailVerifyServiceImpl implements EmailVerifyService {
         if (emailVerifyList != null && emailVerifyList.size() != 0) {
             emailVerify = emailVerifyList.get(0);
             token = UUID.randomUUID().toString();
-            int expire_at = DateKit.getCurrentUnixTime() + ttl;
+            long expire_at = DateKit.getCurrentUnixTime() + ttl;
             emailVerify.setToken(token);
             emailVerify.setExpireAt(expire_at);
         }

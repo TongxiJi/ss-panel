@@ -29,19 +29,19 @@ public class User {
 
     private String obfs;
 
-    private Byte switched;
+    private Boolean switched = true;
 
-    private Byte enable;
+    private Boolean enable = true;
 
-    private Byte type;
+    private Integer type;
 
-    private Integer lastGetGiftTime;
+    private Long lastGetGiftTime;
 
-    private Integer lastCheckInTime;
+    private Long lastCheckInTime;
 
-    private Integer lastRestPassTime;
+    private Long lastRestPassTime;
 
-    private Integer regDate;
+    private Long regDate;
 
     private Integer inviteNum;
 
@@ -49,11 +49,11 @@ public class User {
 
     private Integer refBy;
 
-    private Integer expireTime;
+    private Long expireTime;
 
     private String method;
 
-    private Byte isEmailVerify;
+    private Boolean isEmailVerify;
 
     private String regIp;
 
@@ -160,59 +160,59 @@ public class User {
         this.obfs = obfs == null ? null : obfs.trim();
     }
 
-    public Byte getSwitched() {
+    public Boolean getSwitched() {
         return switched;
     }
 
-    public void setSwitched(Byte switched) {
+    public void setSwitched(Boolean switched) {
         this.switched = switched;
     }
 
-    public Byte getEnable() {
+    public Boolean getEnable() {
         return enable;
     }
 
-    public void setEnable(Byte enable) {
+    public void setEnable(Boolean enable) {
         this.enable = enable;
     }
 
-    public Byte getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(Byte type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
-    public Integer getLastGetGiftTime() {
+    public Long getLastGetGiftTime() {
         return lastGetGiftTime;
     }
 
-    public void setLastGetGiftTime(Integer lastGetGiftTime) {
+    public void setLastGetGiftTime(Long lastGetGiftTime) {
         this.lastGetGiftTime = lastGetGiftTime;
     }
 
-    public Integer getLastCheckInTime() {
+    public Long getLastCheckInTime() {
         return lastCheckInTime;
     }
 
-    public void setLastCheckInTime(Integer lastCheckInTime) {
+    public void setLastCheckInTime(Long lastCheckInTime) {
         this.lastCheckInTime = lastCheckInTime;
     }
 
-    public Integer getLastRestPassTime() {
+    public Long getLastRestPassTime() {
         return lastRestPassTime;
     }
 
-    public void setLastRestPassTime(Integer lastRestPassTime) {
+    public void setLastRestPassTime(Long lastRestPassTime) {
         this.lastRestPassTime = lastRestPassTime;
     }
 
-    public Integer getRegDate() {
+    public Long getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Integer regDate) {
+    public void setRegDate(Long regDate) {
         this.regDate = regDate;
     }
 
@@ -240,11 +240,11 @@ public class User {
         this.refBy = refBy;
     }
 
-    public Integer getExpireTime() {
+    public Long getExpireTime() {
         return expireTime;
     }
 
-    public void setExpireTime(Integer expireTime) {
+    public void setExpireTime(Long expireTime) {
         this.expireTime = expireTime;
     }
 
@@ -253,15 +253,15 @@ public class User {
     }
 
     public void setMethod(String method) {
-        this.method = method == null ? null : method.trim();
+        this.method = method;
     }
 
-    public Byte getIsEmailVerify() {
+    public Boolean getIsEmailVerify() {
         return isEmailVerify;
     }
 
-    public void setIsEmailVerify(Byte isEmailVerify) {
-        this.isEmailVerify = isEmailVerify;
+    public void setIsEmailVerify(Boolean emailVerify) {
+        isEmailVerify = emailVerify;
     }
 
     public String getRegIp() {
@@ -269,13 +269,13 @@ public class User {
     }
 
     public void setRegIp(String regIp) {
-        this.regIp = regIp == null ? null : regIp.trim();
+        this.regIp = regIp;
     }
 
-    public double trafficUsagePercent(){
+    public double trafficUsagePercent() {
         long total = this.getU() + this.getD();
         long transferEnable = this.getTransferEnable();
-        if(transferEnable == 0){
+        if (transferEnable == 0) {
             return 0;
         }
         long percent = total / transferEnable;
@@ -283,44 +283,44 @@ public class User {
         return percent;
     }
 
-    public String enableTraffic(){
+    public String enableTraffic() {
         return Functions.flowAutoShow(this.getTransferEnable());
     }
 
-    public String usedTraffic(){
+    public String usedTraffic() {
         return Functions.flowAutoShow(this.getU() + this.getD());
     }
 
-    public String unusedTraffic(){
+    public String unusedTraffic() {
         long total = this.getU() + this.getD();
         long transfer_enable = this.getTransferEnable();
         return Functions.flowAutoShow(transfer_enable - total);
     }
 
-    public String lastCheckInTime(){
-        if(this.getLastCheckInTime() == 0){
+    public String lastCheckInTime() {
+        if (this.getLastCheckInTime() == 0) {
             return "从未签到";
         }
         return DateKit.formatDateByUnixTime(this.getLastCheckInTime(), "yyyy-MM-dd HH:mm:ss");
     }
 
-    public boolean isAbleToCheckin(){
+    public boolean isAbleToCheckin() {
         Integer ct = Integer.valueOf(Application.getEnvValue("app.checkinTime")) * 60 * 60;
-        if(this.getLastCheckInTime() + ct < DateKit.getCurrentUnixTime()){
+        if (this.getLastCheckInTime() + ct < DateKit.getCurrentUnixTime()) {
             return true;
         }
         return false;
     }
 
-    public String lastSsTime(){
-        if(this.getT() == 0){
+    public String lastSsTime() {
+        if (this.getT() == 0) {
             return "从未使用喵";
         }
         return DateKit.formatDateByUnixTime(getT(), "yyyy-MM-dd HH:mm:ss");
     }
 
     public double enableTrafficInGB() {
-        return transferEnable /(1048576 * 1024.0000);
+        return transferEnable / (1048576 * 1024.0000);
     }
 
     @Override

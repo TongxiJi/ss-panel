@@ -7,9 +7,9 @@ public class PasswordReset {
 
     private String token;
 
-    private Integer initTime;
+    private Long initTime;
 
-    private Integer expireTime;
+    private Long expireTime;
 
     public Integer getId() {
         return id;
@@ -35,19 +35,19 @@ public class PasswordReset {
         this.token = token == null ? null : token.trim();
     }
 
-    public Integer getInitTime() {
+    public Long getInitTime() {
         return initTime;
     }
 
-    public void setInitTime(Integer initTime) {
+    public void setInitTime(Long initTime) {
         this.initTime = initTime;
     }
 
-    public Integer getExpireTime() {
+    public Long getExpireTime() {
         return expireTime;
     }
 
-    public void setExpireTime(Integer expireTime) {
+    public void setExpireTime(Long expireTime) {
         this.expireTime = expireTime;
     }
 }

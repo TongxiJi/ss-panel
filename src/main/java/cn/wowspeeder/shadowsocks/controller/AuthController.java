@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -171,6 +172,17 @@ public class AuthController {
         temp.setInviteNum(Integer.valueOf(Functions.config("app.inviteNum")));
         temp.setRegIp(ip);
         temp.setRefBy(c.getUserId());
+        temp.setProtocol("origin");
+        temp.setObfs("plain");
+        temp.setMethod("aes-256-cfb");
+        temp.setType(0);
+        temp.setLastCheckInTime(0L);
+        temp.setExpireTime(0L);
+        temp.setLastGetGiftTime(0L);
+        temp.setLastRestPassTime(0L);
+        temp.setIsAdmin(0);
+        temp.setIsEmailVerify(true);
+        temp.setRegDate(Instant.now().getEpochSecond());
 
         try {
             userService.save(temp);

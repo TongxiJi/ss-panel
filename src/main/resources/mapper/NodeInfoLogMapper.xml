@@ -6,7 +6,7 @@
     <result column="node_id" property="nodeId" jdbcType="INTEGER" />
     <result column="uptime" property="uptime" jdbcType="REAL" />
     <result column="load" property="load" jdbcType="VARCHAR" />
-    <result column="log_time" property="logTime" jdbcType="INTEGER" />
+    <result column="log_time" property="logTime" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >

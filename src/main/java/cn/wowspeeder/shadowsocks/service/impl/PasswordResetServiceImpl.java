@@ -34,7 +34,7 @@ public class PasswordResetServiceImpl implements PasswordResetService {
         passwordReset.setEmail(email);
         String token = UUID.UU16();
         passwordReset.setToken(token);
-        int time = DateKit.getCurrentUnixTime();
+        Long time = DateKit.getCurrentUnixTime();
         passwordReset.setInitTime(time);
         passwordReset.setExpireTime(time + 3600 * 24);
         passwordResetMapper.insert(passwordReset);

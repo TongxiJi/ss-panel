@@ -5,13 +5,13 @@ public class CheckinLog {
 
     private Integer userId;
 
-    private Integer checkinAt;
+    private Long checkinAt;
 
     private Integer traffic;
 
-    private Integer createdAt;
+    private Long createdAt;
 
-    private Integer updatedAt;
+    private Long updatedAt;
 
     public Integer getId() {
         return id;
@@ -29,11 +29,11 @@ public class CheckinLog {
         this.userId = userId;
     }
 
-    public Integer getCheckinAt() {
+    public Long getCheckinAt() {
         return checkinAt;
     }
 
-    public void setCheckinAt(Integer checkinAt) {
+    public void setCheckinAt(Long checkinAt) {
         this.checkinAt = checkinAt;
     }
 
@@ -45,19 +45,19 @@ public class CheckinLog {
         this.traffic = traffic;
     }
 
-    public Integer getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Integer createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Integer getUpdatedAt() {
+    public Long getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Integer updatedAt) {
+    public void setUpdatedAt(Long updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

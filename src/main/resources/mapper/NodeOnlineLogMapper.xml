@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="node_id" property="nodeId" jdbcType="INTEGER" />
     <result column="online_user" property="onlineUser" jdbcType="INTEGER" />
-    <result column="log_time" property="logTime" jdbcType="INTEGER" />
+    <result column="log_time" property="logTime" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >

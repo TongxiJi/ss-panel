@@ -9,7 +9,7 @@ public class NodeInfoLog {
 
     private String load;
 
-    private Integer logTime;
+    private Long logTime;
 
     public Integer getId() {
         return id;
@@ -43,11 +43,11 @@ public class NodeInfoLog {
         this.load = load == null ? null : load.trim();
     }
 
-    public Integer getLogTime() {
+    public Long getLogTime() {
         return logTime;
     }
 
-    public void setLogTime(Integer logTime) {
+    public void setLogTime(Long logTime) {
         this.logTime = logTime;
     }
 }

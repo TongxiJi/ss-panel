@@ -46,7 +46,7 @@ public class UserController {
                          @RequestParam String pass, @RequestParam String passwd,
                          @RequestParam Integer port, @RequestParam Double transfer_enable,
                          @RequestParam Integer invite_num, @RequestParam String method,
-                         @RequestParam Integer enable, @RequestParam Integer is_admin,
+                         @RequestParam Boolean enable, @RequestParam Integer is_admin,
                          @RequestParam Integer ref_by) {
 
         User user = new User();
@@ -62,7 +62,7 @@ public class UserController {
         user.setPort(port);
         user.setTransferEnable(Utils.toGB(transfer_enable));
         user.setInviteNum(invite_num);
-        user.setEnable(enable.byteValue());
+        user.setEnable(enable);
         user.setMethod(method);
         user.setIsAdmin(is_admin);
         user.setRefBy(ref_by);

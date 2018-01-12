@@ -36,7 +36,7 @@ public class AdminServiceImpl implements AdminService {
     public Analytics getAnalytics(int time) {
         Analytics analytics = new Analytics();
 
-        int todayUnixTime = (int) (Timestamp.valueOf(LocalDate.now().atStartOfDay()).getTime() / 1000);
+        Long todayUnixTime = Timestamp.valueOf(LocalDate.now().atStartOfDay()).getTime() / 1000;
 
         //总用户
         int users = userMapper.countByExample(null);
@@ -49,7 +49,7 @@ public class AdminServiceImpl implements AdminService {
         int checkInUsers = userMapper.countByExample(checkInExample);
 
         // TODO: 2017/5/23 @param time 内在线的用户
-        int t = DateKit.getCurrentUnixTime() - time;
+        long t = DateKit.getCurrentUnixTime() - time;
 //        UserExample onlineExample = new UserExample();
 //        onlineExample.createCriteria()
 //                .andTGreaterThan(t);

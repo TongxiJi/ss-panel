@@ -7,9 +7,9 @@ public class Config {
 
     private String value;
 
-    private Integer createdAt;
+    private Long createdAt;
 
-    private Integer updatedAt;
+    private Long updatedAt;
 
     public Integer getId() {
         return id;
@@ -35,19 +35,19 @@ public class Config {
         this.value = value == null ? null : value.trim();
     }
 
-    public Integer getCreatedAt() {
+    public Long getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Integer createdAt) {
+    public void setCreatedAt(Long createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Integer getUpdatedAt() {
+    public Long getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Integer updatedAt) {
+    public void setUpdatedAt(Long updatedAt) {
         this.updatedAt = updatedAt;
     }
 }

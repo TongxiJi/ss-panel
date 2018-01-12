@@ -1139,47 +1139,47 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastCheckInTimeNotEqualTo(Integer value) {
+        public Criteria andLastCheckInTimeNotEqualTo(Long value) {
             addCriterion("last_check_in_time <>", value, "lastCheckInTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastCheckInTimeGreaterThan(Integer value) {
+        public Criteria andLastCheckInTimeGreaterThan(Long value) {
             addCriterion("last_check_in_time >", value, "lastCheckInTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastCheckInTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andLastCheckInTimeGreaterThanOrEqualTo(Long value) {
             addCriterion("last_check_in_time >=", value, "lastCheckInTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastCheckInTimeLessThan(Integer value) {
+        public Criteria andLastCheckInTimeLessThan(Long value) {
             addCriterion("last_check_in_time <", value, "lastCheckInTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastCheckInTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andLastCheckInTimeLessThanOrEqualTo(Long value) {
             addCriterion("last_check_in_time <=", value, "lastCheckInTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastCheckInTimeIn(List<Integer> values) {
+        public Criteria andLastCheckInTimeIn(List<Long> values) {
             addCriterion("last_check_in_time in", values, "lastCheckInTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastCheckInTimeNotIn(List<Integer> values) {
+        public Criteria andLastCheckInTimeNotIn(List<Long> values) {
             addCriterion("last_check_in_time not in", values, "lastCheckInTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastCheckInTimeBetween(Integer value1, Integer value2) {
+        public Criteria andLastCheckInTimeBetween(Long value1, Long value2) {
             addCriterion("last_check_in_time between", value1, value2, "lastCheckInTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastCheckInTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andLastCheckInTimeNotBetween(Long value1, Long value2) {
             addCriterion("last_check_in_time not between", value1, value2, "lastCheckInTime");
             return (Criteria) this;
         }
@@ -1259,12 +1259,12 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andRegDateNotEqualTo(Integer value) {
+        public Criteria andRegDateNotEqualTo(Long value) {
             addCriterion("reg_date <>", value, "regDate");
             return (Criteria) this;
         }
 
-        public Criteria andRegDateGreaterThan(Integer value) {
+        public Criteria andRegDateGreaterThan(Long value) {
             addCriterion("reg_date >", value, "regDate");
             return (Criteria) this;
         }

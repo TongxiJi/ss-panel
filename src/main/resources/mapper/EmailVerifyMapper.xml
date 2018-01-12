@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="token" property="token" jdbcType="VARCHAR" />
-    <result column="expire_at" property="expireAt" jdbcType="INTEGER" />
+    <result column="expire_at" property="expireAt" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >

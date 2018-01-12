@@ -1,3 +1,4 @@
+use ss_panel;
 /*
  Navicat Premium Data Transfer
 
@@ -25,8 +26,8 @@ CREATE TABLE `sp_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key_` varchar(128) NOT NULL DEFAULT '',
   `value_` varchar(2000) NOT NULL DEFAULT '',
-  `created_at` int(10) NOT NULL,
-  `updated_at` int(10) NOT NULL,
+  `created_at` bigint(20) NOT NULL,
+  `updated_at` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
@@ -38,7 +39,7 @@ CREATE TABLE `sp_email_verify` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(32) NOT NULL,
   `token` varchar(64) NOT NULL,
-  `expire_at` int(11) NOT NULL,
+  `expire_at` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -50,7 +51,7 @@ CREATE TABLE `sp_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(16) NOT NULL,
   `msg` text NOT NULL,
-  `created_time` int(11) NOT NULL,
+  `created_time`  bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -74,14 +75,14 @@ CREATE TABLE `sp_user` (
   `switched` tinyint(4) NOT NULL DEFAULT '1',
   `enable` tinyint(4) NOT NULL DEFAULT '1',
   `type` tinyint(4) NOT NULL DEFAULT '1',
-  `last_get_gift_time` int(11) NOT NULL DEFAULT '0',
-  `last_check_in_time` int(11) NOT NULL DEFAULT '0',
-  `last_rest_pass_time` int(11) NOT NULL DEFAULT '0',
-  `reg_date` int(10) NOT NULL,
+  `last_get_gift_time` bigint(20) NOT NULL DEFAULT 0,
+  `last_check_in_time` bigint(20) NOT NULL DEFAULT 0,
+  `last_rest_pass_time` bigint(20) NOT NULL DEFAULT 0,
+  `reg_date` bigint(20) NOT NULL DEFAULT 0,
   `invite_num` int(8) NOT NULL DEFAULT '0',
   `is_admin` int(2) NOT NULL DEFAULT '0',
   `ref_by` int(11) NOT NULL DEFAULT '0',
-  `expire_time` int(11) NOT NULL DEFAULT '0',
+  `expire_time` bigint(20) NOT NULL,
   `method` varchar(64) NOT NULL DEFAULT 'rc4-md5',
   `is_email_verify` tinyint(4) NOT NULL DEFAULT '0',
   `reg_ip` varchar(128) NOT NULL DEFAULT '127.0.0.1',
@@ -97,10 +98,10 @@ DROP TABLE IF EXISTS `ss_checkin_log`;
 CREATE TABLE `ss_checkin_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `checkin_at` int(11) NOT NULL,
+  `checkin_at` bigint(20) NOT NULL,
   `traffic` int(11) NOT NULL,
-  `created_at` int(10) DEFAULT NULL,
-  `updated_at` int(10) DEFAULT NULL,
+  `created_at` bigint(20) DEFAULT NULL,
+  `updated_at` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
@@ -112,8 +113,8 @@ CREATE TABLE `ss_invite_code` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(128) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `created_at` int(10) NOT NULL,
-  `updated_at` int(10) NOT NULL,
+  `created_at` bigint(20) NOT NULL,
+  `updated_at` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
@@ -146,7 +147,7 @@ CREATE TABLE `ss_node_info_log` (
   `node_id` int(11) NOT NULL,
   `uptime` float NOT NULL,
   `load` varchar(32) NOT NULL,
-  `log_time` int(11) NOT NULL,
+  `log_time` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -158,7 +159,7 @@ CREATE TABLE `ss_node_online_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `node_id` int(11) NOT NULL,
   `online_user` int(11) NOT NULL,
-  `log_time` int(11) NOT NULL,
+  `log_time` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -170,8 +171,8 @@ CREATE TABLE `ss_password_reset` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(32) NOT NULL,
   `token` varchar(128) NOT NULL,
-  `init_time` int(11) NOT NULL,
-  `expire_time` int(11) NOT NULL,
+  `init_time` bigint(20) NOT NULL,
+  `expire_time` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
@@ -183,8 +184,8 @@ CREATE TABLE `user_token` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `token` varchar(256) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `create_time` int(11) NOT NULL,
-  `expire_time` int(11) NOT NULL,
+  `create_time` bigint(20) NOT NULL,
+  `expire_time` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -200,7 +201,7 @@ CREATE TABLE `user_traffic_log` (
   `node_id` int(11) NOT NULL,
   `rate` float NOT NULL,
   `traffic` varchar(32) NOT NULL,
-  `log_time` int(11) NOT NULL,
+  `log_time` bigint(20) NOT NULL,
   `node_info` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;

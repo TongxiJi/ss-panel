@@ -15,7 +15,7 @@ public class Functions {
 
     public static String config(String key) {
         if (!StringUtils.isEmpty(key)) {
-            Application.getEnvValue(key);
+            return Application.getEnvValue(key);
         }
         return "";
     }
@@ -42,7 +42,7 @@ public class Functions {
      * @param unixTime
      * @return
      */
-    public static String fmtdate(Integer unixTime) {
+    public static String fmtdate(Long unixTime) {
         if (null != unixTime) {
             return DateKit.formatDateByUnixTime(unixTime, "yyyy-MM-dd");
         }
@@ -56,7 +56,7 @@ public class Functions {
      * @param patten
      * @return
      */
-    public static String fmtdate(Integer unixTime, String patten) {
+    public static String fmtdate(Long unixTime, String patten) {
         if (null != unixTime && !StringUtils.isEmpty(patten)) {
             return DateKit.formatDateByUnixTime(unixTime, patten);
         }

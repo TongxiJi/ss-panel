@@ -4,10 +4,10 @@
   <resultMap id="BaseResultMap" type="cn.wowspeeder.shadowsocks.model.CheckinLog" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
-    <result column="checkin_at" property="checkinAt" jdbcType="INTEGER" />
+    <result column="checkin_at" property="checkinAt" jdbcType="BIGINT" />
     <result column="traffic" property="traffic" jdbcType="INTEGER" />
-    <result column="created_at" property="createdAt" jdbcType="INTEGER" />
-    <result column="updated_at" property="updatedAt" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="BIGINT" />
+    <result column="updated_at" property="updatedAt" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >

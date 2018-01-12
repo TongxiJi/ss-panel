@@ -17,14 +17,14 @@
     <result column="switched" property="switched" jdbcType="TINYINT" />
     <result column="enable" property="enable" jdbcType="TINYINT" />
     <result column="type" property="type" jdbcType="TINYINT" />
-    <result column="last_get_gift_time" property="lastGetGiftTime" jdbcType="INTEGER" />
-    <result column="last_check_in_time" property="lastCheckInTime" jdbcType="INTEGER" />
-    <result column="last_rest_pass_time" property="lastRestPassTime" jdbcType="INTEGER" />
-    <result column="reg_date" property="regDate" jdbcType="INTEGER" />
+    <result column="last_get_gift_time" property="lastGetGiftTime" jdbcType="BIGINT" />
+    <result column="last_check_in_time" property="lastCheckInTime" jdbcType="BIGINT" />
+    <result column="last_rest_pass_time" property="lastRestPassTime" jdbcType="BIGINT" />
+    <result column="reg_date" property="regDate" jdbcType="BIGINT" />
     <result column="invite_num" property="inviteNum" jdbcType="INTEGER" />
     <result column="is_admin" property="isAdmin" jdbcType="INTEGER" />
     <result column="ref_by" property="refBy" jdbcType="INTEGER" />
-    <result column="expire_time" property="expireTime" jdbcType="INTEGER" />
+    <result column="expire_time" property="expireTime" jdbcType="BIGINT" />
     <result column="method" property="method" jdbcType="VARCHAR" />
     <result column="is_email_verify" property="isEmailVerify" jdbcType="TINYINT" />
     <result column="reg_ip" property="regIp" jdbcType="VARCHAR" />

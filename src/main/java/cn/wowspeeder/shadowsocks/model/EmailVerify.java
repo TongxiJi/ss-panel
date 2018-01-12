@@ -7,7 +7,7 @@ public class EmailVerify {
 
     private String token;
 
-    private Integer expireAt;
+    private Long expireAt;
 
     public Integer getId() {
         return id;
@@ -33,11 +33,11 @@ public class EmailVerify {
         this.token = token == null ? null : token.trim();
     }
 
-    public Integer getExpireAt() {
+    public Long getExpireAt() {
         return expireAt;
     }
 
-    public void setExpireAt(Integer expireAt) {
+    public void setExpireAt(Long expireAt) {
         this.expireAt = expireAt;
     }
 }

@@ -489,12 +489,12 @@ public class DateKit {
         return (long)getUnixTimeByDate(new Date());
     }
 
-    public static int getCurrentUnixTime() {
+    public static long getCurrentUnixTime() {
         return getUnixTimeByDate(new Date());
     }
 
-    public static int getUnixTimeByDate(Date date) {
-        return (int)(date.getTime() / 1000L);
+    public static long getUnixTimeByDate(Date date) {
+        return (date.getTime() / 1000L);
     }
 
     public static long getUnixTimeLong(Date date) {

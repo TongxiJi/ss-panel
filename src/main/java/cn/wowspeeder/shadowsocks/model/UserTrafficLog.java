@@ -15,7 +15,7 @@ public class UserTrafficLog {
 
     private String traffic;
 
-    private Integer logTime;
+    private Long logTime;
 
     private String nodeInfo;
 
@@ -75,11 +75,11 @@ public class UserTrafficLog {
         this.traffic = traffic == null ? null : traffic.trim();
     }
 
-    public Integer getLogTime() {
+    public Long getLogTime() {
         return logTime;
     }
 
-    public void setLogTime(Integer logTime) {
+    public void setLogTime(Long logTime) {
         this.logTime = logTime;
     }
 

@@ -5,7 +5,7 @@ public class Log {
 
     private String type;
 
-    private Integer createdTime;
+    private Long createdTime;
 
     private String msg;
 
@@ -25,11 +25,11 @@ public class Log {
         this.type = type == null ? null : type.trim();
     }
 
-    public Integer getCreatedTime() {
+    public Long getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(Integer createdTime) {
+    public void setCreatedTime(Long createdTime) {
         this.createdTime = createdTime;
     }
 

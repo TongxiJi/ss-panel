@@ -7,9 +7,9 @@ public class UserToken {
 
     private Integer userId;
 
-    private Integer createTime;
+    private Long createTime;
 
-    private Integer expireTime;
+    private Long expireTime;
 
     public Integer getId() {
         return id;
@@ -35,19 +35,19 @@ public class UserToken {
         this.userId = userId;
     }
 
-    public Integer getCreateTime() {
+    public Long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Integer createTime) {
+    public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 
-    public Integer getExpireTime() {
+    public Long getExpireTime() {
         return expireTime;
     }
 
-    public void setExpireTime(Integer expireTime) {
+    public void setExpireTime(Long expireTime) {
         this.expireTime = expireTime;
     }
 }

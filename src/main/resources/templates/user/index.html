@@ -75,7 +75,7 @@
                     <div class="box-body">
                         <p> 每${config("app.checkinTime")}小时可以签到一次。</p>
 
-                        <p>上次签到时间：<code>${login_user.lastCheckInTime()}</code></p>
+                        <p>上次签到时间：<code>${fmtdate(login_user.lastCheckInTime,'yyyy-MM-dd HH:mm:ss')}</code></p>
                         #if(login_user.isAbleToCheckin())
                         <p id="checkin-btn">
                             <button id="checkin" class="btn btn-success  btn-flat">签到</button>
