@@ -95,7 +95,7 @@ public class UserController {
         String ssurl = ary.get("method") + ":" + ary.get("password") + "@" + ary.get("server") + ":" + ary.get("server_port");
         String ssqr = "ss://" + Base64.getEncoder().encodeToString(ssurl.getBytes());
 
-        String surge_base = Functions.config("app.baseUrl");
+        String surge_base = Application.getEnvValue("app.baseUrl");
         String surge_proxy = "#!PROXY-OVERRIDE:ProxyBase.conf\\n" +
                 "[Proxy]\\n" +
                 "Proxy = custom," + ary.get("server") + "," +

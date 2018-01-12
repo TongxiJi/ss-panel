@@ -188,8 +188,8 @@
     $(document).ready(function () {
         function submit() {
             $.ajax({
-                type: "PUT",
-                url: "/admin/user/${user.id}",
+                type: "POST",
+                url: "/admin/user/${user.id}/update",
                 dataType: "json",
                 data: {
                     user_name: $("#user_name").val(),

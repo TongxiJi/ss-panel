@@ -39,7 +39,7 @@ public class UserController {
         return new ModelAndView("/admin/user/edit", "user", user);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "{id}/update", method = RequestMethod.POST)
     @ResponseBody
     public Result update(@PathVariable Integer id,
                          @RequestParam String user_name, @RequestParam String email,

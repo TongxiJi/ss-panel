@@ -154,8 +154,8 @@
     $(document).ready(function () {
         function submit() {
             $.ajax({
-                type: "PUT",
-                url: "/admin/node/${node.id}",
+                type: "POST",
+                url: "/admin/node/${node.id}/update",
                 dataType: "json",
                 data: {
                     name: $("#name").val(),
@@ -187,6 +187,7 @@
                 }
             });
         }
+
         $("html").keydown(function (event) {
             if (event.keyCode == 13) {
                 login();

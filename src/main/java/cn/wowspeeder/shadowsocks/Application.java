@@ -18,6 +18,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.sql.DataSource;
 
@@ -27,6 +28,7 @@ import javax.sql.DataSource;
  * Create Date:一月09,2018
  */
 @SpringBootApplication
+@EnableWebMvc
 public class Application extends SpringBootServletInitializer {
     private static ApplicationContext context;
 

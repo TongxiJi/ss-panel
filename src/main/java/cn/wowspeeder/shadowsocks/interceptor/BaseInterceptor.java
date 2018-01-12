@@ -10,6 +10,7 @@ import cn.wowspeeder.shadowsocks.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -21,6 +22,7 @@ import java.io.IOException;
 /**
  * 用户session拦截器
  */
+@Component
 public class BaseInterceptor extends HandlerInterceptorAdapter {
     private static final Logger LOG = LoggerFactory.getLogger(BaseInterceptor.class);
 
@@ -31,7 +33,7 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
         String uri = request.getServletPath();
-//        LOGGE.info("UA >>> " + request.userAgent());
+//        LOG.info("UA >>> " + request.userAgent());
         LOG.info("用户访问地址:{} 来路地址:{}", uri, Utils.getIpAddr(request));
 
         LoginUser loginUser = SessionUtils.getLoginUser(request);
@@ -59,14 +61,14 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
             return false;
         }
 
-//        if (loginUser != null && uri.startsWith("/admin") && loginUser.getIsAdmin() == 0) {
-//            try {
-//                response.sendRedirect(request.getContextPath() + "/auth/login");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            return false;
-//        }
+        if (loginUser != null && uri.startsWith("/admin") && loginUser.getIsAdmin() == 0) {
+            try {
+                response.sendRedirect(request.getContextPath() + "/auth/login");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
         return true;
     }
 

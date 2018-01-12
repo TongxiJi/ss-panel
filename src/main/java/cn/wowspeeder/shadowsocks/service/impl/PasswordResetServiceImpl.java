@@ -39,12 +39,12 @@ public class PasswordResetServiceImpl implements PasswordResetService {
         passwordReset.setExpireTime(time + 3600 * 24);
         passwordResetMapper.insert(passwordReset);
 
-        String subject = Functions.config("app.appName") + " 重置密码";
+        String subject = Application.getEnvValue("app.appName") + " 重置密码";
 
         String resetUrl = Application.getEnvValue("app.baseUrl") + "/password/token?c=" + token;
         Map<String, Object> cry = new HashMap<>();
         cry.put("resetUrl", resetUrl);
-        cry.put("appName", Functions.config("app.appName"));
+        cry.put("appName", Application.getEnvValue("app.appName"));
 
         Envelope envelope = new Envelope(email, "/email/password/reset.html", subject, cry);
         EmailUtils.send(envelope);

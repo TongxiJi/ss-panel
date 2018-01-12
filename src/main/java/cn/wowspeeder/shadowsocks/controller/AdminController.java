@@ -75,7 +75,7 @@ public class AdminController {
         return new ModelAndView("/admin/config","config", config);
     }
 
-    @RequestMapping(value = "config", method = RequestMethod.PUT)
+    @RequestMapping(value = "config", method = RequestMethod.POST)
     @ResponseBody
     public Result updateConfig(@RequestParam String analyticsCode,
                                @RequestParam String homeCode,

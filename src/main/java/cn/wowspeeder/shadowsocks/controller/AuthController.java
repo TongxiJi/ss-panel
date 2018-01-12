@@ -108,7 +108,7 @@ public class AuthController {
      */
     @RequestMapping(value = "register", method = RequestMethod.GET)
     public ModelAndView register(@RequestParam(required = false) String code) {
-        String requireEmailVerification = Functions.config("app.emailVerifyEnabled");
+        Boolean requireEmailVerification = Boolean.parseBoolean(Application.getEnvValue("app.emailVerifyEnabled"));
         HashMap<String, Object> data = new HashMap<>();
         data.put("code", code);
         data.put("requireEmailVerification", requireEmailVerification);
@@ -119,7 +119,7 @@ public class AuthController {
     @ResponseBody
     public Result doRegister(@RequestParam String name, @RequestParam String email,
                              @RequestParam String passwd, @RequestParam String repasswd,
-                             @RequestParam String code, @RequestParam String verifycode,
+                             @RequestParam String code, @RequestParam(required = false) String verifycode,
                              HttpServletRequest request) {
         //TODO  图像验证码
 
@@ -154,7 +154,7 @@ public class AuthController {
 
         String ip = Utils.getIpAddr(request);
         int ipRegCount = userService.getIpRegCount(ip);
-        if (ipRegCount >= Integer.valueOf(Functions.config("app.ipDayLimit"))) {
+        if (ipRegCount >= Integer.valueOf(Application.getEnvValue("app.ipDayLimit"))) {
             return Result.fail("当前IP注册次数超过限制");
         }
         User temp = new User();
@@ -168,8 +168,8 @@ public class AuthController {
         temp.setU(0L);
         temp.setD(0L);
         // TODO: 2017/5/23  更新不了需要修复
-        temp.setTransferEnable(Utils.toGB(Double.valueOf(Functions.config("app.defaultTraffic"))));
-        temp.setInviteNum(Integer.valueOf(Functions.config("app.inviteNum")));
+        temp.setTransferEnable(Utils.toGB(Double.valueOf(Application.getEnvValue("app.defaultTraffic"))));
+        temp.setInviteNum(Integer.valueOf(Application.getEnvValue("app.inviteNum")));
         temp.setRegIp(ip);
         temp.setRefBy(c.getUserId());
         temp.setProtocol("origin");

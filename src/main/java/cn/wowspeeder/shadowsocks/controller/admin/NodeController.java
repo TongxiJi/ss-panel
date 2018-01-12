@@ -71,7 +71,7 @@ public class NodeController {
         return new ModelAndView("/admin/node/edit", data);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "{id}/update", method = RequestMethod.POST)
     @ResponseBody
     public Result update(@PathVariable Integer id, @RequestParam String name, @RequestParam String server,
                          @RequestParam String method, @RequestParam int custom_method,
