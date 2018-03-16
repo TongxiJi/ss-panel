@@ -1,8 +1,7 @@
 package cn.wowspeeder.shadowsocks.utils;
 
 import org.springframework.util.StringUtils;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -201,14 +200,14 @@ public class Utils {
         SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES");
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte[] encryptedBytes = cipher.doFinal(plainText.getBytes());
-        return new BASE64Encoder().encode(encryptedBytes);
+        return new String(Base64.getEncoder().encode(encryptedBytes));
     }
 
     public static String decrypt(String cipherText, String encryptionKey) throws Exception {
         Cipher cipher = Cipher.getInstance("AES");
         SecretKeySpec key = new SecretKeySpec(encryptionKey.getBytes("UTF-8"), "AES");
         cipher.init(Cipher.DECRYPT_MODE, key);
-        byte[] cipherTextBytes = new BASE64Decoder().decodeBuffer(cipherText);
+        byte[] cipherTextBytes = Base64.getDecoder().decode(cipherText);
         byte[] decValue = cipher.doFinal(cipherTextBytes);
         return new String(decValue);
     }
